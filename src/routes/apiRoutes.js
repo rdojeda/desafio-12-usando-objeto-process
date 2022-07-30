@@ -18,6 +18,7 @@ router.get("/info", (req, res) => {
   res.send(info);
 });
 
+
 router.get("/api/randoms", (req, res) => {
   const cant = req.query.cant || 10000;
   const child = fork("./src/getRandom.js");
@@ -30,5 +31,15 @@ router.get("/api/randoms", (req, res) => {
      console.log("Se ha cerrado el proceso", code)
    })
 });
+
+router.get("/datos", (req, res) => {
+  console.log(`port: ${PORT} -> Fyh: ${Date.now()}`);
+  res.send(
+    `Servidor express (Ngnix) en ${PORT} - PID ${
+      process.pid
+    } - ${new Date().toLocaleString()} `
+  );
+});
+
 
 export default router;
